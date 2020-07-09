@@ -4,7 +4,7 @@ Ansible Capsules in Arabic
 
 This is for Educational purposes only.
 
-Please share it with whoever wants to learn with keeping in mind the GNU license attached to the project.
+Please share it with whoever wants to learn with keeping in mind the GNU license attached to the project if it is there ;).
 
 I have no responsibilities towards anything you do :). You can't ask me for anything I'm sharing with you.
 
