@@ -1,6 +1,7 @@
 Writing a Playbook
 
-1. Write a playbook that meets the following requirements. Use ansible-doc for additional information if needed
+1. Write a playbook that meets the following requirements. 
+(Use ansible-doc for additional information if needed)
 	a. Install, start and enable the httpd service on all managed nodes
 2. Run the playbook, and observe working of the playbook
 3. Run the playbook one more time, and again, observe the working of the playbook
