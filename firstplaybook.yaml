@@ -1,0 +1,9 @@
+---
+- name: our first ad-hoc command in a playbook 
+  hosts: all
+  tasks:
+  - name: check capsule user
+    command: id capsule
+    register: idoutput
+  - debug:
+      var: idoutput

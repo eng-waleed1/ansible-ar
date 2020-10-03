@@ -1,0 +1,12 @@
+---
+- name: create user capsule on ansible2 node
+  hosts: ansible2
+  tasks:
+  - name: create capsule user
+    user: 
+      name: capsule
+      state: present
+    register: usercreatevar
+  - debug:
+      var: usercreatevar
+
