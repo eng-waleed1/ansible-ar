@@ -1,0 +1,50 @@
+---
+- name: play1 - touch some files in three tasks
+  hosts: ansible1
+  tasks:
+  - name: Touch a file
+    file:
+      path: /tmp/somefile.tmp
+      state: touch
+      mode: '0777'
+
+    register: output1
+  - debug:
+      var: output1
+
+  - name: Change file ownership , group and permissions
+    file:
+      path: /tmp/somefile.tmp
+      owner: ansible
+      group: ansible
+      mode: '0444'
+
+    register: output2
+  - debug:
+      var: output2
+
+  - name: Touch the same file, but add/remove some permissions
+    file:
+      path: /tmp/somefile.tmp
+      state: touch
+      mode: u+wx,g+wx,o-r
+    register: output3
+  - debug:
+      var: output3
+
+- name: play 2 - create a directory on ansible2.
+  hosts: ansible2
+  tasks:
+  - name: Create a directory if it does not exist
+    file:
+      path: /tmp/some_directory
+      state: directory
+      mode: '0755'
+      owner: ansible
+      group: ansible
+
+    register: output4
+  - debug:
+      var: output4
+    
+...

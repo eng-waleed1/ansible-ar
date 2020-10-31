@@ -1,0 +1,6 @@
+A playbook with Errors that needs to be fixed and writing another playbook:
+
+1. the playbook " httpd-install-with-errors.yaml " was written with errors, try to find out
+the errors, correct the playbook, and run it once all is corrected.
+
+2. write a playbook that copy a custom file " httpd.conf " which you already prepared in advance as a simple httpd configuration from a temporary location in control node to " /etc/httpd/conf/httpd.conf " at the managed nodes with keeping a backup of current httpd.conf file before replacing it on the managed nodes. Don't forget to restart httpd daemon and check that status.

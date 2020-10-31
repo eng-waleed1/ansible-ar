@@ -9,4 +9,4 @@
     register: usercreatevar
   - debug:
       var: usercreatevar
-
+...

@@ -1,0 +1,31 @@
+---
+- name: install httpd rpm on all nodes then start and enable the service
+  hosts: all
+  tasks:
+  - name: install httpd rpm
+    yum:
+      name: httpd
+      state: latest
+
+    register: installresult
+  - debug:
+      var: installresult
+
+  - name: check if httpd was installed
+    yum:
+      list: httpd
+
+    register: checkhttpdresult
+  - debug:
+      var: checkhttpdresult
+
+  - name: start and enable httpd
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+
+    register: httpdservicestate
+  - debug:
+      var: httpdservicestate
+...

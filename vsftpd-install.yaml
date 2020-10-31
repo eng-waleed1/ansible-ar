@@ -1,0 +1,66 @@
+---
+- name: play 1 - install vsftpd rpm on all nodes then start and enable the service
+  #gather_facts: no
+  hosts: all
+  tasks:
+  - name: install vsftpd rpm
+    yum:
+      name: vsftpd
+      state: latest
+
+#    register: installresult
+#  - debug:
+#      var: installresult
+
+  - name: check if vsftpd was installed
+    yum:
+      list: vsftpd
+
+#    register: checkvsftpdresult
+#  - debug:
+#      var: checkvsftpdresult
+
+  - name: start and enable vsftpd
+    service:
+      name: vsftpd
+      state: started
+      enabled: yes
+
+#    register: vsftpdservicestate
+#  - debug:
+#      var: vsftpdservicestate
+#
+
+  - name: configure firewalld
+    firewalld:
+      port: 21/tcp
+      permanent: yes
+      state: enabled
+      immediate: true
+
+  - name: configure firewalld
+    firewalld:
+      service: ftp
+      permanent: yes
+      state: enabled
+      immediate: true
+
+  - name: reload firewalld
+    command: firewall-cmd --reload
+
+- name: play 2 - create README file under ftp pub directory 
+  #gather_facts: no
+  hosts: all
+  tasks:
+  - name: create readme file
+    copy:
+      content: "let us prepare our ftp server for public"
+      dest: /var/ftp/pub/README
+      force: no
+      mode: 0444
+
+  - name: restart vsftpd
+    service:
+      name: vsftpd
+      state: restarted
+...

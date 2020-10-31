@@ -1,0 +1,40 @@
+---
+- name: play1 - adjust firewalld and create index.html
+  hosts: all
+  tasks:
+  - name: configure firewalld for http access
+    firewalld:
+      service: http
+      permanent: yes
+      state: enabled
+      immediate: yes
+
+  - name: create an index.html
+    copy:
+      content: 'Welcome to Ansible Capsules in Arabic!'
+      dest: /var/www/html/index.html
+
+- name: play2 - check ansible1
+  hosts: ansible1
+  tasks:
+  - name: Check our ansible1 webserver
+    uri:
+      url: http://ansible1.ansiblear.com
+      return_content: yes
+      status_code: 200
+    register: this
+  - debug:
+      var: this
+
+- name: play3 - check ansible2
+  hosts: ansible2
+  tasks:
+  - name: Check our ansible2 webserver
+    uri:
+      url: http://ansible2.ansiblear.com
+      return_content: yes
+      status_code: 200
+    register: that
+  - debug:
+      var: that
+...
